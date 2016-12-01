@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => 'qq470401911',
 	'database' => 'gaokao',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => 'gk_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
