@@ -93,4 +93,24 @@ class CI_Controller {
 		return self::$instance;
 	}
 
+	protected function show($code, $message, $data = null){
+	    echo json_encode(array('code'=>$code, 'message'=>$message, 'data'=>$data));
+        exit(0);
+    }
+
+    protected function _check($params){
+        foreach ($params as $value){
+            if (!$value){
+                $this->show(400, '参数错误');
+                break;
+            }else{
+                continue;
+            }
+        }
+    }
+
+    protected function response($data){
+        !$data?$this->show(403,'暂无记录'):$this->show(200,'ok',$data);
+    }
+
 }

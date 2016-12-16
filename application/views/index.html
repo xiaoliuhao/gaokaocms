@@ -1,11 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>403 Forbidden</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="../../../KTV/css/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="../../../KTV/css/login.css" />
+	<link rel="stylesheet" type="text/css" href="../../../KTV/css/search-form.css">
+	<link rel="stylesheet" type="text/css" href="../../../KTV/css/lrtk.css" />
+	<link rel="stylesheet" type="text/css" href="../../../KTV/css/bg-image.css" />
+	<link rel="stylesheet" type="text/css" href="../../../KTV/css/list.css" />
+	<title>登陆/注册</title>
+	<script src="../../../KTV/js/modernizr.custom.js"></script>
+	<script src="../../../KTV/js/sing/jquery172.js"></script>
 </head>
+
 <body>
+<div id="change_container">
+<!--导航栏-->
+	<div class="header" id="index">
+		<div class="section_inner">
+			<!--logo-->
+			<h1 class="ktv_title">
+				<a href="#">
+					<img src="../../../KTV/images/logo.png" width="" height="68">
+				</a>
+			</h1>
+			<!--导航-->
+			<div id="navigation">
+			<nav class="nav">
+ 				<ul class="nav_menu">
+    				<li class="nav_menu-item active1"><a href="index.html">首页</a></li>
+    				<li class="nav_menu-item"><a>音乐库</a>
+	      				<ul class="nav_submenu">
+	        				<li class="nav_submenu-item"> <a href="../../../KTV/singer-list.html" >歌手</a></li>
+	        				<li class="nav_submenu-item"> <a href="../../../KTV/rank.html" >排行榜</a></li>
+	       	 				<li class="nav_submenu-item"> <a href="../../../KTV/gedan.html" >歌单</a></li>
+	      				</ul>
+    				</li>
+    				<li class="nav_menu-item"><a href="../../../KTV/person.html" >个人中心</a></li>
+    				<li class="nav_menu-item "><a href="../../../KTV/sing.html" >欢唱厅</a></li>
+    				<li class="nav_menu-item"><a href="index.html">关于我们</a></li>
+  				</ul>
+			</nav>
+			</div>
+			<!--搜索框-->
+			<div class="search">
+				<form onsubmit="submitFn(this, event);">
+			        <div class="search-wrapper">
+			            <div class="input-holder">
+			                <input type="text" class="search-input" placeholder="请输入关键字" style="font-family:youyuan"/>
+			                <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+			            </div>
+			            <span class="close" onclick="searchToggle(this, event);"></span>
+			            <div class="result-container">
 
-<p>Directory access is forbidden.</p>
+			            </div>
+			        </div>
+			    </form>
+			</div>
+			<!--login-->
+			<div class="container1">
+				<section>
+					<div class="mockup-content">
+						<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
+							<button type="button" >登陆</button>
+							<div class="morph-content">
+								<div>
+									<div class="content-style-form content-style-form-1">
+										<span class="icon icon-close">Close the dialog</span>
+										<h2>登陆</h2>
+										<form>
+											<p><label>用户名</label><input type="text" id="username" /></p>
+											<p><label>密码</label><input type="password" id="password" /></p>
+											<p><button id="login">Login</button></p>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div><!-- morph-button -->
+						<strong>|</strong>
+						<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
+							<button type="button">注册</button>
+							<div class="morph-content">
+								<div>
+									<div class="content-style-form content-style-form-2">
+										<span class="icon icon-close">Close the dialog</span>
+										<h2>注册</h2>
+										<form>
+											<p><label>用户名</label><input type="text" /></p>
+											<p><label>密码</label><input type="password" /></p>
+											<p><label>重复密码</label><input type="password" /></p>
+											<p><button>Sign Up</button></p>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div><!-- morph-button -->
+					</div><!-- /form-mockup -->
+				</section>
+			</div>
+		</div>
+	</div>	
 
+
+	
+	<!--首页登陆背景-->
+	<div class="bg-nav" id="bg-nav">
+		<img src="../../../KTV/images/bg-nav.png" width="100%" height="612">
+		<div class="welcome">
+			<h1>唱我想唱，唱你想听</h1>
+			<h4>你的私人<span style="font-family:Microsoft YaHei">KTV</span></h4>
+		</div>			
+	</div>
+    <!--关于我们-->
+    <div class="about_us" id="about_us">
+    	<div class="our_team">
+    		<img src="../../../KTV/images/ourteam.png">
+    	</div>
+    	<div class="picture">
+    		<img src="../../../KTV/images/bg2.png" height="580" width="100%">
+    	</div>
+    </div>
+    <!--footer-->
+    <div class="footer">
+    	<footer>
+  			<p>畅唱KTV点歌系统</p>
+		</footer>
+    </div>
+	
+	<!--置顶-->
+    <div class="actGotop">
+		<a href="#" class="cd-top">Top</a>
+    </div>
+   </div>
+    <div id="player" class="opening">		
+		<div class="coverbg">
+			<img id="coverimg" class="Rotation img" src="../../../KTV/css/images/coverbg.png" width="100%" height="100%">
+			<div class="cover"></div>
+		</div>
+		
+		
+		<div id="lyric">
+			<ul id="lyric-box" style="margin-top:0">
+				<li>暂无歌词</li>			
+			</ul>
+		</div>
+		<ul id="playlist"></ul>
+	</div>
+	
+
+	<footer>
+		<div id="ctrl">
+			<div class="tag">
+				<strong>Title</strong>
+				<span class="artist">Artist</span>
+				<span class="album">Album</span>
+			 </div>
+			<div class="control">
+				<div class="left">
+					<div class="rewind icon"></div>
+					<div class="playback icon"></div>
+					<div class="fastforward icon"></div>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="progressbar slider">
+						<div class="loaded"></div>
+						<div class="pace"></div>
+					</div>					
+					<div class="right">
+						<div class="repeat icon"></div>
+						<div class="shuffle icon"></div>
+					</div>
+				</div>
+				<div class="volume volumesite">
+					<div class="mute icon left"></div>
+					<div class="slider left">
+						<div class="pace"></div>
+					</div>
+				</div>
+			</div>
+			<div class="showplayer icon"></div>			
+		</div>
+	</footer>
+    <script src="../../../KTV/js/sing/jquery-ui-1.8.17.custom.min.js"></script>
+	<script src="../../../KTV/js/sing/script.js"></script>
+	<script>window.jQuery || document.write('<script src="../../../KTV/js/jquery-1.11.0.min.js"><\/script>')</script>
+	<script type="text/javascript" src="../../../KTV/js/jquery.historyLoad-1.1.js"></script>
+	<script  type="text/javascript">
+	$('body').historyLoad('#change_container');
+	</script>
+    <script src="../../../KTV/js/classie.js"></script>
+	<script src="../../../KTV/js/uiMorphingButton_fixed.js"></script>
+	<script src="../../../KTV/js/animate/login.js"></script>
+	<script src="../../../KTV/js/animate/search.js"></script>
+	<script src="js/animate/top.js"></script>
+	<script src="../../../KTV/js/animate/lrtk.js"></script>
+	<script src="../../../KTV/js/animate/login.js"></script>
+	<script src="../../../KTV/js/animate/bg-image.js"></script>
+	<script src="../../../KTV/js/animate/nav-singer.js"></script>
+	<script src="../../../KTV/js/demo.js"></script>
 </body>
 </html>
