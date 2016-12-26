@@ -6,6 +6,7 @@
  * Version: 1.0                  *
  *********************************
  */
+header( 'Access-Control-Allow-Origin:*' );
 class User extends CI_Controller {
     public function __construct(){
         parent::__construct();
@@ -30,7 +31,7 @@ class User extends CI_Controller {
 //        $post['code'] = 'DD3B9D718280'; //测试用的激活码
         $code_info = $this->base->select('isset','code', array('code'=>$post['code']));
         //$code_info['isset'] == 1表示已经被使用过, 为0表示还未使用过
-        if(!$code_info['isset']){
+        if($code_info['isset'] || !isset($code_info['isset'])){
             $this->show(403, '此注册码已使用');
         }
         //判断两次密码是否一致
@@ -47,7 +48,7 @@ class User extends CI_Controller {
         $insert = $this->base->insert('user',
             array(
                 'userid'   => $post['userid'],
-                'name'     => $post['username'],
+                'name'     => $post['name'],
                 'password' => $post['passwd']
             )
         );
@@ -65,7 +66,7 @@ class User extends CI_Controller {
         $post['userid'] = $this->input->post('userid', true);
         $post['passwd'] = $this->input->post('passwd', true);
         $this->_check($post);
-
+        //todo:密码加密处理
         $user_info = $this->user->get_user_info($post['userid'], $post['passwd']);
 //        $this->show(200, 'ok', $user_info);
         if(!$user_info){
@@ -108,17 +109,17 @@ class User extends CI_Controller {
     /**
      * 生成12位激活码 一次1000条记录
      */
-//    public function set(){
-//        for($i = 0; $i<1000; $i++){
-//            $rank = rand(0,9999);//产生一个4位随机数
-//            //将上面的$rank与当前时间连接,精确到秒|md5生成32位字符串, 截取12位  随机从0~19位开始
-//            $str = substr(strtoupper(md5($rank.time())), rand(0, 19), 12);
-//            $bool = $this->base->insert('code', array('code'=>$str, 'isset'=>0));
-//            if(!$bool){
-//                echo '插入失败'.'<br>';
-//            }else{
-//                echo '插入成功:'.$str.'<br>';
-//            }
-//        }
-//    }
+    public function set(){
+        for($i = 0; $i<1000; $i++){
+            $rank = rand(0,9999);//产生一个4位随机数
+            //将上面的$rank与当前时间连接,精确到秒|md5生成32位字符串, 截取12位  随机从0~19位开始
+            $str = substr(strtoupper(md5($rank.time())), rand(0, 19), 12);
+            $bool = $this->base->insert('code', array('code'=>$str, 'isset'=>0));
+            if(!$bool){
+                echo '插入失败'.'<br>';
+            }else{
+                echo '插入成功:'.$str.'<br>';
+            }
+        }
+    }
 }

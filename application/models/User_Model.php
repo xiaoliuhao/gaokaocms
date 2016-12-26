@@ -32,7 +32,7 @@ class User_Model extends CI_Model {
      * @param $userid
      */
     public function active($code, $userid){
-        $this->base->update('code', array('isset'=>1, 'userid'=>$userid));
+        $this->base->update('code', array('isset'=>1 , 'userid'=>$userid), array('code'=>$code));
     }
 
     /**
