@@ -1,7 +1,7 @@
 ##用户类
 
 **注册**
-  *    地址：`http://localhost/gaokaocms/user/bind`
+  *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/user/bind`
   
        * 查询值：`POST`
  
@@ -36,7 +36,7 @@
        ```
 
 **登录**
-  *    地址：`http://localhost/gaokaocms/user/bind`
+  *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/user/login`
   
        * 查询值：`POST`
  
