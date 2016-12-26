@@ -12,6 +12,10 @@ class School_Model extends CI_Model {
         parent::__construct();
     }
 
+    public function search(array $array = array(), $page){
+        return $this->base->select_with_page('*', 'schools', $array, $page);
+    }
+
     /**
      * 获取学校简介
      * @param $name
@@ -29,4 +33,7 @@ class School_Model extends CI_Model {
     public function get_detail($name){
         return $this->base->select('*', 'school_info', array('schoolname'=>$name));
     }
+
+
+
 }

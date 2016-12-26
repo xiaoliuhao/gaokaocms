@@ -31,7 +31,7 @@ class User extends CI_Controller {
         $code_info = $this->base->select('isset','code', array('code'=>$post['code']));
         //$code_info['isset'] == 1表示已经被使用过, 为0表示还未使用过
         if(!$code_info['isset']){
-            $this->show(403, '此激活码已注册');
+            $this->show(403, '此注册码已使用');
         }
         //判断两次密码是否一致
         if($post['passwd'] != $post['passwd2']){
@@ -52,12 +52,12 @@ class User extends CI_Controller {
             )
         );
         //更新验证码为使用状态
-        $this->user->active($code, $userid);
+        $this->user->active($post['code'], $post['userid']);
         //判断是否插入成功
         if($insert){
             $this->show(200,'ok');
         }else{
-            $this->show(201,'绑定失败');
+            $this->show(201,'绑定失败,请重试');
         }
     }
 

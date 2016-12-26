@@ -36,6 +36,18 @@ class Base_Model extends CI_Model {
     }
 
     /**
+     * @param $needs
+     * @param $table
+     * @param $array
+     * @param int $page
+     * @param int $rows
+     * @return mixed
+     */
+    public function select_with_page($needs, $table, $array, $page = 1, $rows = 20){
+        return $this->db->select($needs)->from($table)->where($array)->limit($rows, ($page-1)*$rows)->get()->result_array();
+    }
+
+    /**
      * select_array_needs
      * @access public
      * @param $needs
@@ -69,24 +81,12 @@ class Base_Model extends CI_Model {
         $this->db->update($table,$data,$where);
         return $this->db->affected_rows();
     }
-    /**
-     * delete 删除数据
-     * @access public
-     * @param $table    需要删除的表明
-     * @param $data     删除条件
-     * @return mixed    返回删除的行数
-     */
+
     public function delete($table,$where){
         $this->db->delete($table,$where);
         return $this->dn->affected_rows();
     }
-    /**
-     * write_user_log
-     * @access public
-     * @param $uid
-     * @param $action
-     * @param $ip
-     */
+
     public function write_user_log($uid,$action){
         $ip = $_SERVER["REMOTE_ADDR"];
         $this->db->insert('user_log',array('uid'=>$uid,'action'=>$action,'ip'=>$ip,'time'=>date('Y-m-d H:i:s')));

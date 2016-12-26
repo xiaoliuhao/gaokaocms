@@ -21,7 +21,19 @@ class School extends CI_Controller {
     }
     
     public function search(){
-        $get['name'] = $this->input->get('name', true);
+        $page            = $this->input->get('page', true)?$this->input->get('page', true):'1';
+        $get['province'] = $this->input->get('province', true);
+        $get['level']    = $this->input->get('level', true);
+        $get['property'] = $this->input->get('property', true);
+        $params = array();
+        foreach($get as $key => $value){
+            if($value){
+                $params[$key] = $value;
+            }
+        }
+        $data = $this->school->search($params, $page);
+
+        $this->show(200, 'ok', $data);
     }
 
     public function info(){
@@ -41,5 +53,6 @@ class School extends CI_Controller {
         //输出数据
         $this->response($result);
     }
+
 
 }
