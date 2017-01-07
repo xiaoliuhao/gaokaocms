@@ -19,6 +19,16 @@ class Zhuanye extends CI_Controller {
 
     public function get_all(){
         $data = $this->zhuanye->get_all();
-        $this->show(200,'ok',$data);
+//        $this->show(200,'ok',$data);
+        echo json_encode($data);
     }
+
+    public function select(){
+
+    }
+
+    public function get_score_by_school(){
+
+    }
+
 }

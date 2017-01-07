@@ -70,7 +70,7 @@ class User extends CI_Controller {
         $user_info = $this->user->get_user_info($post['userid'], $post['passwd']);
 //        $this->show(200, 'ok', $user_info);
         if(!$user_info){
-            $this->show(403, '用户名不存在或密码错误');
+            $this->show(404, '用户名不存在或密码错误');
         }
         $this->show(200, 'ok', $user_info);
     }
@@ -87,20 +87,20 @@ class User extends CI_Controller {
         $this->_check($post);
         //两次新密码是否相同
         if($post['new_passwd'] != $post['new_passwd2']){
-            $this->show(402, '两次密码不一致');
+            $this->show(203, '两次密码不一致');
         }
         //判断用户密码是否正确
         $_check = $this->user->check_passwd($post['userid'], $post['passwd']);
         //密码错误
         if(!$_check){
-            $this->show('404','密码错误');
+            $this->show(404,'用户名不存在或密码错误');
         }
         //更新密码
         $result = $this->user->reset_passwd($post['userid'], $post['new_passwd']);
         if($result){
             $this->show(200, 'ok');
         }else{
-            $this->show(203, '重置密码失败,请重试');
+            $this->show(503, '修改密码失败,请重试');
         }
     }
 
@@ -109,17 +109,17 @@ class User extends CI_Controller {
     /**
      * 生成12位激活码 一次1000条记录
      */
-    public function set(){
-        for($i = 0; $i<1000; $i++){
-            $rank = rand(0,9999);//产生一个4位随机数
-            //将上面的$rank与当前时间连接,精确到秒|md5生成32位字符串, 截取12位  随机从0~19位开始
-            $str = substr(strtoupper(md5($rank.time())), rand(0, 19), 12);
-            $bool = $this->base->insert('code', array('code'=>$str, 'isset'=>0));
-            if(!$bool){
-                echo '插入失败'.'<br>';
-            }else{
-                echo '插入成功:'.$str.'<br>';
-            }
-        }
-    }
+//    public function set(){
+//        for($i = 0; $i<1000; $i++){
+//            $rank = rand(0,9999);//产生一个4位随机数
+//            //将上面的$rank与当前时间连接,精确到秒|md5生成32位字符串, 截取12位  随机从0~19位开始
+//            $str = substr(strtoupper(md5($rank.time())), rand(0, 19), 12);
+//            $bool = $this->base->insert('code', array('code'=>$str, 'isset'=>0));
+//            if(!$bool){
+//                echo '插入失败'.'<br>';
+//            }else{
+//                echo '插入成功:'.$str.'<br>';
+//            }
+//        }
+//    }
 }
