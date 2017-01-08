@@ -112,7 +112,7 @@
  
        ``` json
        {
-            "name":"北京大学"   //需要搜索的学校名
+            "name":"北京大学",   //需要搜索的学校名
             "page":"1"         //页码 一页20条
        }
        ```
@@ -324,6 +324,7 @@
        }
        //一般不会有问题
        ```
+
 **获取开设的专业**
   *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/school/zhuanye?name=北京大学`
        * 查询值:`GET`
@@ -355,10 +356,11 @@
                       }
                    ]
        }
-
+       ```
 
 
 ## 辅助工具类
+
 **获取所有专业(无分页)**
   *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/zhuanye/all`
   
@@ -400,6 +402,7 @@
                        }
                    ]
        }
+       ```
 
 ## 专业类
 
