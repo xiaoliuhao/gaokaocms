@@ -14,6 +14,7 @@ class School extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('School_Model', 'school');
+        $this->load->model('Zhuanye_Model', 'zhuanye');
     }
     
     public function index(){
@@ -82,6 +83,12 @@ class School extends CI_Controller {
         $name = $this->input->get('name', true);
         $result = $this->school->get_score($name);
         //输出数据
+        $this->response($result);
+    }
+    
+    public function zhuanye(){
+        $name = $this->input->get('name', true);
+        $result = $this->zhuanye->get_by_school($name);
         $this->response($result);
     }
 

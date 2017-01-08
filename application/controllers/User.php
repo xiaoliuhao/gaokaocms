@@ -104,6 +104,24 @@ class User extends CI_Controller {
         }
     }
 
+    public function set_info(){
+        $userid = $this->input->post('userid', true);
+        $post['name']   = $this->input->post('name', true);
+        $post['sex']    = $this->input->post('sex', true);
+        $post['score']  = $this->input->post('score', true);
+        $post['tel']    = $this->input->post('tel', true);
+
+        $new_info = array();
+        foreach($post as $key => $value){
+            if($value){
+                $new_info[$key] = $value;
+            }
+        }
+
+        $result = $this->user->set_info($userid, $new_info);
+        $this->show(200, 'ok', $result);
+    }
+
 
 
     /**

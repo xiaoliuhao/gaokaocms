@@ -16,7 +16,7 @@ class Tool_Model extends CI_Model {
     }
 
     public function get_all(){
-        $sql = "select DISTINCT province from gk_schools";
+        $sql = "select DISTINCT schoolproperty from gk_schools";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

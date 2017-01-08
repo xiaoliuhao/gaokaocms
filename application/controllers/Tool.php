@@ -30,4 +30,9 @@ class Tool extends CI_Controller {
         $data = $this->tool->get('zhuanye');
         $this->show(200, 'ok', $data);
     }
+
+    public function get_all_property(){
+        $data = $this->tool->get('property');
+        $this->show(200, 'ok', $data);
+    }
 }

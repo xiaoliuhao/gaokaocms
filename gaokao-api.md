@@ -164,7 +164,7 @@
             "page":"1",             //页码
             "province":"北京"       //省份
             "level":"本科",         //本科、专科
-            "property":"654321",    //学校分类 get_property中获取
+            "property":"理工类",    //学校分类 从工具类中get_all_property中获取
             "f985":"1",             //985院校1为是 0否
             "f211":"1",             //211院校 同上
        }
@@ -324,6 +324,38 @@
        }
        //一般不会有问题
        ```
+**获取开设的专业**
+  *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/school/zhuanye?name=北京大学`
+       * 查询值:`GET`
+       
+       ``` json
+              {
+                   "name":"北京大学"   //学校名称 上面列表中存在的学校名称 模糊搜索需要别的接口
+              }
+       ```
+       
+       * 返回值：
+  
+       ``` json
+       // success
+       {
+            "status":200,
+            "message": "ok",
+            "data":[
+                      {
+                          "schoolid": "31",
+                          "schoolname": "北京大学",
+                          "specialtyname": "物理学类",
+                          "studenttype": "理科",
+                          "year": "2013",
+                          "batch": "一批",
+                          "var": "640",
+                          "max": "640",
+                          "min": "--"
+                      }
+                   ]
+       }
+
 
 
 ## 辅助工具类
@@ -371,4 +403,54 @@
 
 ## 专业类
 
-
+**筛选**
+  *    地址：`http://www.zhuangyuanlangvip.com/zhuangyuanlang/api/zhuanye/select?page=1&studenttype=文科&name=人力资源管理&batch=一批&year=2015`
+  
+       * 查询值：`GET`
+ 
+       ``` json
+       {
+            "page":"1",             //页码
+            "studenttype":"文科"       //省份
+            "name":"人力资源管理",         //本科、专科
+            "batch":"一批",             //学校分类 get_property中获取
+            "year":"2015",             //985院校1为是 0否
+       }
+       ```
+  > 以上几个值需要搜什么就传什么不需要则不传或传空值
+  
+       * 返回值：
+  
+       ``` json
+       // success
+       {
+            "status":200,
+            "message": "ok",
+            "data":[
+                       {
+                           "schoolid": "31",            //学校id
+                           "schoolname": "北京大学",     //学校名字
+                           "province": "北京",           //省份
+                           "schoolproperty": "综合类",   //种类
+                           "edudirectly": "1",          //是否教育部直属
+                           "f985": "1",                 //985
+                           "f211": "1",                 //211
+                           "level": "本科",             //本科,专科
+                           "membership": "教育部",       //举办
+                           "schoolnature": "公办",        //公办民办
+                           "guanwang": "http://www.pku.edu.cn", //官网
+                           "oldname": "北京大学"            //曾用名
+                       },
+                       {
+                        ...
+                       }
+                   ]
+       }
+       // error
+       { 
+            "status":"不为200", 
+            "message": "具体的信息",
+            "data": ""
+       }
+       //一般不会有问题
+       ```

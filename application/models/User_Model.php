@@ -55,4 +55,8 @@ class User_Model extends CI_Model {
     public function reset_passwd($userid, $passwd){
         return $this->base->update('user', array('password'=>$passwd), array('userid'=>$userid));
     }
+
+    public function set_info($userid,array $info){
+        return $this->base->update('user', $info, array('userid' => $userid));
+    }
 }
